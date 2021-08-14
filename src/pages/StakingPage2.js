@@ -61,21 +61,21 @@ const HomePage = () => {
     const networkId = await web3.eth.net.getId();
     console.log(networkId);
 
-    if (networkId !== 97) {
-      setError("Please connect BSC Testnet");
+    if (networkId !== 4) {
+      setError("Please connect Rinkeby Testnet");
       setLoading(false);
       return;
     }
     const leadToken = new web3.eth.Contract(
       ERC20.abi,
-      "0xdb12652ca3d828316386dfee64c613fd5e40e69f"
-    ); //mainnet address for lead token
+      "0xBf1ecEb62521C715C7c6c4b607F8E697dFEb5418"
+    ); //mainnet address for Staking token
     const totalSupply = await leadToken.methods.totalSupply().call();
     const balance = await leadToken.methods.balanceOf(accounts[0]).call();
 
     const leadStake = new web3.eth.Contract(
       LeadStake.abi,
-      "0x86ffdd2431b78685eb32df30cdf03ec627eafcdb"
+      "0x9f6bf4372510BBA6C72EECA3D5C5C10b35351393"
     ); //mainnet address for staking dapp
     const totalStaked = await leadStake.methods.totalStaked().call();
     const minStake = await leadStake.methods.minimumStakeValue().call();
@@ -438,7 +438,7 @@ const HomePage = () => {
           )}
           {accounts && (
             <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-10">
-              <Card title="Total Staked LEAD">
+              <Card title="Total Staked EXORG">
                 <div className="flex flex-col pt-8 pb-4 text-white">
                   <div className="text-center">
                     <span className="text-white text-5xl">
@@ -446,7 +446,7 @@ const HomePage = () => {
                         parseFloat(totalStaked).toFixed(2) / 1000000000000000000
                       ).toFixed(2)}
                     </span>
-                    <span className="text-white text-2xl ml-2">LEAD</span>
+                    <span className="text-white text-2xl ml-2">EXORG</span>
                   </div>
                   <div className="text-center">
                     {(
@@ -467,7 +467,7 @@ const HomePage = () => {
                           Registration Fee:{"  "}
                           <span className="text-white text-2xl">
                             {parseInt(registrationTax) / 1000000000000000000}{" "}
-                            LEAD
+                            EXORG
                           </span>
                         </li>
                         <li>
@@ -485,7 +485,7 @@ const HomePage = () => {
                         <li>
                           Minimum Stake:{"  "}
                           <span className="text-white text-2xl">
-                            {parseInt(minStake) / 1000000000000000000} LEAD
+                            {parseInt(minStake) / 1000000000000000000} EXORG
                           </span>
                         </li>
                       </ul>
@@ -503,7 +503,7 @@ const HomePage = () => {
                       <span className="text-white text-3xl">
                         {parseInt(minRegister)}
                       </span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">EXORG</span>
                     </div>
                     <div className="text-center pb-4">
                       <span className="text-lg text-gray-400">
@@ -512,12 +512,12 @@ const HomePage = () => {
                       <span className="text-white text-3xl">
                         {parseInt(parseInt(balance) / 1000000000000000000)}
                       </span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">EXORG</span>
                     </div>
                     <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
                       <input
                         type="number"
-                        placeholder="LEAD To Stake"
+                        placeholder="EXORG To Stake"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
@@ -559,7 +559,7 @@ const HomePage = () => {
                       <span className="text-white text-3xl">
                         {parseInt(minStake) / 1000000000000000000}
                       </span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">EXORG</span>
                     </div>
                     <div className="text-center pb-4">
                       <span className="text-lg text-gray-400">
@@ -568,12 +568,12 @@ const HomePage = () => {
                       <span className="text-white text-3xl">
                         {parseInt(parseInt(balance) / 1000000000000000000)}
                       </span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">EXORG</span>
                     </div>
                     <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
                       <input
                         type="number"
-                        placeholder="LEAD To Stake"
+                        placeholder="EXORG To Stake"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
@@ -603,7 +603,7 @@ const HomePage = () => {
                         2
                       )}
                     </span>
-                    <span className="text-white text-2xl ml-2">LEAD</span>
+                    <span className="text-white text-2xl ml-2">EXORG</span>
                   </div>
                   <div className="flex flex-row justify-center">
                     <Button
@@ -627,7 +627,7 @@ const HomePage = () => {
                         <span className="text-gray-400 text-lg">
                           Staking Reward:{" "}
                         </span>
-                        {parseFloat(stakingRewards) / 1000000000000000000} LEAD
+                        {parseFloat(stakingRewards) / 1000000000000000000} EXORG
                       </div>
                       <div>
                         <span className="text-gray-400 text-lg">
@@ -641,7 +641,7 @@ const HomePage = () => {
                         <span className="text-gray-400 text-lg">
                           Referral Reward:
                         </span>{" "}
-                        {parseFloat(referralRewards) / 1000000000000000000} LEAD
+                        {parseFloat(referralRewards) / 1000000000000000000} EXORG
                       </div>
                       <div>
                         <span className="text-gray-400 text-lg">
@@ -662,12 +662,12 @@ const HomePage = () => {
                     <span className="text-white text-3xl">
                       {(parseFloat(stakes) / 1000000000000000000).toFixed()}
                     </span>
-                    <span className="text-white text-2xl ml-2">LEAD</span>
+                    <span className="text-white text-2xl ml-2">EXORG</span>
                   </div>
                   <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
                     <input
                       type="number"
-                      placeholder="LEAD To Unstake"
+                      placeholder="EXORG To Unstake"
                       value={unstakeAmount}
                       onChange={(e) => setUnstakeAmount(e.target.value)}
                       className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
